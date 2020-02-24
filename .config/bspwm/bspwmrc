@@ -1,0 +1,60 @@
+#! /bin/sh
+setxkbmap latam,us -option 'grp:alt_shift_toggle'
+
+xsetroot -cursor_name left_ptr &
+
+sxhkd &
+wmname LG3D &
+picom  --config=/home/eduardo/.config/compton/compton.conf & 
+feh --bg-fill /home/eduardo/Imágenes/wallpapers/74381.jpeg &
+~/.config/polybar/launch.sh &
+
+
+if [ -x $HOME/.config/bin/dual_monitor.sh ];then
+
+    $HOME/.config/bin/dual_monitor.sh
+
+fi
+
+
+
+my_laptop_external_monitor=$(xrandr --query | grep 'HDMI1')
+
+
+if [[ $my_laptop_external_monitor != *disconnected* ]]; then
+
+    ##bscp config
+    bspc monitor eDP1  -d 1 2 3 4 5
+    bspc monitor HDMI1 -d 6 7 8 9 0
+else 
+    ##bscp config
+    bspc monitor  -d 1 2 3 4 5 6 7 8 9 0
+fi
+
+
+bspc config border_width         3
+bspc config window_gap		 15
+bspc config focused_border_color "#1991EB"
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config focus_follows_pointer false
+
+bspc config history_aware_focus true
+
+bspc config focus_by_distance true
+
+#bspc rule -a dolphin='^4' state=floating follow=on
+#bspc rule -a Code='^6' state=floating follow=on
+#bspc rule -a firefox desktop='^2'   follow=on
+#bspc rule -a st-256color:ncmpcpp desktop=^4
+bspc rule -a konsole:ncmpcpp desktop=^4 follow=on state=floating
+bspc rule -a jetbrains-phpstorm desktop='^2'  follow=on
+bspc rule -a firefox:Toolkit state=floating sticky=on
+bspc rule -a "Firefox Developer Edition":Toolkit state=floating sticky=on
+#bspc rule -a Pcmanfm='^8'  follow=on
+#bspc rule -a Chromium desktop='^2'
+bspc rule -a Pcmanfm  state=floating
+#bspc rule -a Kupfer.py focus=on
+#bspc rule -a Screenkey managce=off
