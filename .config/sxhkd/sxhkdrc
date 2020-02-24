@@ -45,6 +45,7 @@ super + g
 super + {t,shift + t,s,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
+
 # set the node flags
 super + ctrl + {m,x,y,z}
 	bspc node -g {marked,locked,sticky,private}
@@ -127,10 +128,10 @@ super + ctrl + {Left,Down,Up,Right}
 super + alt  + {Left, Down, Up, Right}
 	/home/eduardo/.config/bspwm/scripts/bspwm_resize {west, south, north, east}
 
-super + shiff + f1
+super + shift + f1
 	firefox
 
-super + shift + l
+ctrl + shift + l
 	~/.config/i3lock/blur.sh
 
 super + shift + f
